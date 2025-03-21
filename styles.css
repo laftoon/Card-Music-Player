@@ -5,9 +5,20 @@ body {
     align-items: center;
     justify-content: center;
     margin: 0;
-    padding: 0; /* Remove padding */
+    padding: 0;
 }
 
+/* Card Container */
+.card-container {
+    position: relative;
+    width: 320px;
+    height: 450px;
+    margin: 0;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    perspective: 1000px;
+}
 
 /* Window Controls */
 .window-controls {
@@ -71,50 +82,7 @@ body {
     background-color: #cc0000;
 }
 
-.card-container {
-    position: relative;
-    width: 320px;
-    height: 450px;
-    margin: 0;
-    background-color: white;
-    border-radius: 20px;
-    overflow: hidden;
-    perspective: 1000px;
-}
-.card-container > img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease-in-out;
-    transform-origin: center center;
-    backface-visibility: hidden;
-}
-
-.card-face {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-    backface-visibility: hidden;
-}
-
-.card-container {
-    position: relative;
-    width: 320px;
-    height: 450px;
-    margin: 0;
-    background-color: white;
-    border-radius: 20px;
-    overflow: hidden;
-    perspective: 1000px;
-}
-
+/* Card Faces */
 .card-face {
     position: absolute;
     top: 0;
@@ -136,6 +104,7 @@ body {
     object-fit: cover;
 }
 
+/* UI Elements Container */
 .ui-elements {
     position: absolute;
     top: 0;
@@ -146,79 +115,34 @@ body {
     pointer-events: auto;
 }
 
-/* When card is flipped */
-.card-container.flipped .card-face.front {
-    transform: rotateY(180deg);
-}
-
-.card-container.flipped .card-face.back {
-    transform: rotateY(0);
-}
-/* Add these animation classes */
-.next-animation {
-    animation: slideLeft 0.6s ease-in-out;
-}
-
-.prev-animation {
-    animation: slideRight 0.6s ease-in-out;
-}
-
-@keyframes slideLeft {
-    0% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    51% {
-        transform: translateX(100%);
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideRight {
-    0% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(100%);
-        opacity: 0;
-    }
-    51% {
-        transform: translateX(-100%);
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
-
-
-.album-frame {
+/* White Frame */
+.white-frame {
     position: absolute;
-    top: 10%;
+    width: 240px;
+    height: 400px;
     left: 50%;
+    top: 25px;
     transform: translateX(-50%);
-    width: 60%;
-    aspect-ratio: 1;
+    background-color: white;
+    border-radius: 12px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    overflow: hidden;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Album Frame */
+.album-frame {
+    width: 192px;
+    aspect-ratio: 1;
+    margin-top: 20px;
     border-radius: 8px;
-    /* Inset effect using only inner shadows */
+    overflow: hidden;
     box-shadow: 
-        /* Dark shadow on top and left */
         inset 4px 4px 8px rgba(0, 0, 0, 0.9),
-        /* Lighter shadow on bottom and right */
         inset -2px -2px 6px rgba(255, 255, 255, 0.1),
-        /* Deep inner shadow around all edges */
         inset 0 0 20px rgba(0, 0, 0, 0.8);
-    /* Add a subtle border to define the cut edge */
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
@@ -228,40 +152,28 @@ body {
     object-fit: cover;
     filter: brightness(0.9);
 }
-.text-frame {
-    position: absolute;
-    width: 260px;
-    height: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    top: calc(10% + 210px); /* Position it below the album frame */
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-}
 
+/* Text Content */
 .text-content {
+    margin-top: 20px;
     color: #ff0000;
     font-size: 14px;
     font-weight: bold;
+    text-align: center;
 }
 
+/* Slider */
 .slider-container {
-    position: absolute;
-    width: 260px;
-    left: 50%;
-    transform: translateX(-50%);
-    top: calc(10% + 245px); /* Position it below the text frame */
-    padding: 10px 0; /* Add padding to make it easier to click */
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 0;
 }
 
 .slider-bar {
     position: relative;
     width: 100%;
     height: 2px;
-    background-color: rgba(255, 0, 0, 0.3); /* Light red for the unfilled part */
+    background-color: rgba(255, 0, 0, 0.3);
 }
 
 .slider-progress {
@@ -269,14 +181,14 @@ body {
     left: 0;
     top: 0;
     height: 100%;
-    width: 30%; /* Initial progress - can be changed with JavaScript */
-    background-color: #ff0000; /* Solid red for the filled part */
+    width: 30%;
+    background-color: #ff0000;
 }
 
 .slider-handle {
     position: absolute;
     top: 50%;
-    left: 30%; /* Should match the progress width */
+    left: 30%;
     width: 10px;
     height: 10px;
     background-color: #ff0000;
@@ -287,22 +199,16 @@ body {
 }
 
 .slider-handle:hover {
-    transform: translate(-50%, -50%) scale(1.2); /* Slightly larger on hover */
+    transform: translate(-50%, -50%) scale(1.2);
 }
 
-.controls-frame {
-    position: absolute;
-    width: 205px;
-    height: 75px;
-    left: 50%;
-    transform: translateX(-50%);
-    top: calc(10% + 280px);
-    background-color: white;
-    border-radius: 8px;
+/* Controls */
+.controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 20px;
+    width: 205px;
+    margin-top: 20px;
 }
 
 .control-button {
@@ -324,16 +230,49 @@ body {
 .control-button img {
     width: 50px;
     height: 50px;
-    filter: brightness(0) saturate(100%) invert(12%) sepia(100%) saturate(5699%) hue-rotate(0deg) brightness(100%) contrast(118%); /* This will make the SVG icons red */
+    filter: brightness(0) saturate(100%) invert(12%) sepia(100%) saturate(5699%) hue-rotate(0deg) brightness(100%) contrast(118%);
 }
 
-/* Make the play button slightly larger */
-.control-button.play {
-    width: 60px;
-    height: 60px;
+/* Card Flip Animation */
+.card-container.flipped .card-face.front {
+    transform: rotateY(180deg);
 }
 
-.control-button.play img {
-    width: 50px;
-    height: 50px;
+.card-container.flipped .card-face.back {
+    transform: rotateY(0);
+}
+
+/* Slide Animations */
+.next-animation {
+    animation: slideLeft 0.6s ease-in-out;
+}
+
+.prev-animation {
+    animation: slideRight 0.6s ease-in-out;
+}
+
+@keyframes slideLeft {
+    0% { transform: translateX(0); }
+    50% { 
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    51% { transform: translateX(100%); }
+    100% { 
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideRight {
+    0% { transform: translateX(0); }
+    50% { 
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    51% { transform: translateX(-100%); }
+    100% { 
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
